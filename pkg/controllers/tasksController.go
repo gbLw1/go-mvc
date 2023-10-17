@@ -68,20 +68,14 @@ func DeleteTask(c *fiber.Ctx) error {
 
 	var task models.Task
 	result := initializers.DB.First(&task, taskId)
-
 	if result.Error != nil {
-		return c.Render("error", fiber.Map{
-			"Error": result.Error,
-		})
+		return fiber.NewError(fiber.StatusNotFound, "Task not found")
 	}
 
 	result = initializers.DB.Delete(&models.Task{}, taskId)
-
 	if result.Error != nil {
-		return c.Render("error", fiber.Map{
-			"Error": result.Error,
-		})
+		return fiber.NewError(fiber.StatusBadRequest, "Failed to delete task")
 	}
 
-	return c.Redirect("/tasks")
+	return c.SendStatus(204)
 }

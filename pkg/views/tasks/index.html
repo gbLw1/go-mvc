@@ -5,10 +5,12 @@
   <a href="/tasks/create" class="m">New</a>
 
   <ul class="flex flex-col justify-center align-center">
-    {{range .Tasks}}
+    {{if (gt (len .Tasks) 0)}} {{range .Tasks}}
     <li class="m">
       <a href="/tasks/{{.ID}}">{{.Title}}</a>
     </li>
+    {{end}} {{ else }}
+    <p class="m">No tasks found</p>
     {{end}}
   </ul>
 </div>

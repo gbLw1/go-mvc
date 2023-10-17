@@ -9,10 +9,23 @@
   <p class="m">Title: <strong>{{.Task.Title}}</strong></p>
   <p class="m">Description: <strong>{{.Task.Body}}</strong></p>
 
-  <!-- TODO: FIX -->
-  <form method="POST" action="/tasks/{{.Task.ID}}?_method=DELETE">
-    <button type="submit" class="delete-btn m">Delete</button>
-  </form>
+  <button type="button" id="delete" class="delete-btn m">Delete</button>
 </div>
+
+<script>
+  const deleteBtn = document.getElementById("delete");
+
+  deleteBtn.addEventListener("click", () => {
+    fetch("/tasks/{{.Task.ID}}", {
+      method: "DELETE",
+    })
+      .then((res) => {
+        window.location.href = "/tasks";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+</script>
 
 {{template "partials/footer" .}}
