@@ -1,0 +1,10 @@
+{{template "partials/header" .}}
+
+<div class="container">
+  <h1 class="my">Task Details</h1>
+
+  <p class="my">Title: <strong>{{.Task.Title}}</strong></p>
+  <p class="my">Description: <strong>{{.Task.Body}}</strong></p>
+</div>
+
+{{template "partials/footer" .}}

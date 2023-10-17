@@ -11,8 +11,8 @@ func FetchTasks(c *fiber.Ctx) error {
 	var tasks []models.Task
 	initializers.DB.Order("created_at desc").Find(&tasks)
 
-	return c.JSON(fiber.Map{
-		"tasks": tasks,
+	return c.Render("tasks/index", fiber.Map{
+		"Tasks": tasks,
 	})
 }
 
@@ -23,11 +23,13 @@ func FetchTask(c *fiber.Ctx) error {
 	result := initializers.DB.First(&task, taskId)
 
 	if result.Error != nil {
-		return result.Error
+		return c.Render("error", fiber.Map{
+			"Error": result.Error,
+		})
 	}
 
-	return c.JSON(fiber.Map{
-		"task": task,
+	return c.Render("tasks/details", fiber.Map{
+		"Task": task,
 	})
 }
 

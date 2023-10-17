@@ -2,4 +2,12 @@
 
 <h1>Tasks Index</h1>
 
+<ul>
+  {{range .Tasks}}
+  <li>
+    <a class="my" href="/tasks/{{.ID}}">{{.Title}}</a>
+  </li>
+  {{end}}
+</ul>
+
 {{template "partials/footer" .}}

@@ -51,7 +51,8 @@ Run the following command
 go run ./cmd/main.go
 ```
 
-<!-- ## Adding REACT
+<!--
+## You can add REACT to your project (bruh...)
 
 `npm init -y`
 
@@ -61,4 +62,5 @@ go run ./cmd/main.go
 
 `npm i -D esbuild`
 
-`npm i -D react-router-dom` -->
+`npm i -D react-router-dom`
+-->
