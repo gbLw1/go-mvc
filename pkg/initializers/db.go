@@ -22,5 +22,5 @@ func ConnectToDatabase() {
 }
 
 func SyncDB() {
-	DB.AutoMigrate(&models.Post{})
+	DB.AutoMigrate(&models.Task{})
 }

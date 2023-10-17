@@ -29,7 +29,7 @@ func main() {
 	app.Static("/", "./public")
 	app.Use(middleware.RequireAuth)
 
-	// register routes
+	// routing
 	routes.HandleAppRoutes(app)
 
 	// start server
