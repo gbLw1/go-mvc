@@ -2,7 +2,6 @@ package main
 
 import (
 	"go-mvc/pkg/initializers"
-	"go-mvc/pkg/middleware"
 	"go-mvc/pkg/routes"
 	"os"
 
@@ -26,8 +25,8 @@ func main() {
 	})
 
 	// configure app
-	app.Static("/", "./public")
-	app.Use(middleware.RequireAuth)
+	app.Static("/", "./pkg/public")
+	// app.Use(middleware.RequireAuth)
 
 	// routing
 	routes.HandleAppRoutes(app)

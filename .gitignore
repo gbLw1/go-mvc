@@ -1,6 +1,4 @@
 /tmp
-
 .env
-
 *.exe
 *.exe~
