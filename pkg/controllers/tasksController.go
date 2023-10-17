@@ -33,6 +33,10 @@ func FetchTask(c *fiber.Ctx) error {
 	})
 }
 
+func CreateTaskPage(c *fiber.Ctx) error {
+	return c.Render("tasks/create", nil)
+}
+
 func CreateTask(c *fiber.Ctx) error {
 	var body struct {
 		Title string
@@ -43,6 +47,12 @@ func CreateTask(c *fiber.Ctx) error {
 		return err
 	}
 
+	if body.Title == "" || body.Body == "" {
+		return c.Render("error", fiber.Map{
+			"Error": "Title and Body are required",
+		})
+	}
+
 	task := models.Task{Title: body.Title, Body: body.Body}
 	result := initializers.DB.Create(&task)
 
@@ -50,20 +60,28 @@ func CreateTask(c *fiber.Ctx) error {
 		return result.Error
 	}
 
-	return c.JSON(fiber.Map{
-		"task": task,
-	})
+	return c.Redirect("/tasks")
 }
 
 func DeleteTask(c *fiber.Ctx) error {
 	taskId := c.Params("id")
-	result := initializers.DB.Delete(&models.Task{}, taskId)
+
+	var task models.Task
+	result := initializers.DB.First(&task, taskId)
 
 	if result.Error != nil {
-		return result.Error
+		return c.Render("error", fiber.Map{
+			"Error": result.Error,
+		})
 	}
 
-	return c.JSON(fiber.Map{
-		"success": "Task deleted",
-	})
+	result = initializers.DB.Delete(&models.Task{}, taskId)
+
+	if result.Error != nil {
+		return c.Render("error", fiber.Map{
+			"Error": result.Error,
+		})
+	}
+
+	return c.Redirect("/tasks")
 }

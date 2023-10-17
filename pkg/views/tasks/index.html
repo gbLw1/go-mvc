@@ -1,13 +1,16 @@
 {{template "partials/header" .}}
 
-<h1>Tasks Index</h1>
+<div class="container">
+  <h1 class="m">Tasks</h1>
+  <a href="/tasks/create" class="m">New</a>
 
-<ul>
-  {{range .Tasks}}
-  <li>
-    <a class="my" href="/tasks/{{.ID}}">{{.Title}}</a>
-  </li>
-  {{end}}
-</ul>
+  <ul class="flex flex-col justify-center align-center">
+    {{range .Tasks}}
+    <li class="m">
+      <a href="/tasks/{{.ID}}">{{.Title}}</a>
+    </li>
+    {{end}}
+  </ul>
+</div>
 
 {{template "partials/footer" .}}

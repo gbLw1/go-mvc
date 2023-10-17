@@ -10,7 +10,8 @@ func HandleAppRoutes(app *fiber.App) {
 	app.Get("/", controllers.Home)
 
 	app.Get("/tasks", controllers.FetchTasks)
-	app.Get("/tasks/:id", controllers.FetchTask)
+	app.Get("/tasks/:id<int>", controllers.FetchTask)
+	app.Get("/tasks/create", controllers.CreateTaskPage)
 	app.Post("/tasks", controllers.CreateTask)
-	app.Delete("/tasks/:id", controllers.DeleteTask)
+	app.Delete("/tasks/:id<int>", controllers.DeleteTask)
 }

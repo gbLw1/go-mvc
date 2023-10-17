@@ -1,11 +1,12 @@
 {{template "partials/header" .}}
 
-<div class="container">
+<div class="container flex flex-col align-center justify-center">
   <h1>Ops! Something went wrong...</h1>
 
-  <p class="my" style="color: red; font-size: 1.6rem">
+  <p class="m" style="color: red; font-size: 1.6rem">
     <strong>{{.Error}}</strong>
   </p>
+  <a onclick="history.back()" class="m">&laquo;&nbsp;Try again</a>
 </div>
 
 {{template "partials/footer" .}}

@@ -1,10 +1,18 @@
 {{template "partials/header" .}}
 
 <div class="container">
-  <h1 class="my">Task Details</h1>
+  <a href="/tasks" class="m">&laquo;&nbsp;Back</a>
+  <h1 class="m">Task details</h1>
 
-  <p class="my">Title: <strong>{{.Task.Title}}</strong></p>
-  <p class="my">Description: <strong>{{.Task.Body}}</strong></p>
+  <p class="m">ID: <strong>{{.Task.ID}}</strong></p>
+  <p class="m">Created at: <strong>{{.Task.CreatedAt}}</strong></p>
+  <p class="m">Title: <strong>{{.Task.Title}}</strong></p>
+  <p class="m">Description: <strong>{{.Task.Body}}</strong></p>
+
+  <!-- TODO: FIX -->
+  <form method="POST" action="/tasks/{{.Task.ID}}?_method=DELETE">
+    <button type="submit" class="delete-btn m">Delete</button>
+  </form>
 </div>
 
 {{template "partials/footer" .}}
